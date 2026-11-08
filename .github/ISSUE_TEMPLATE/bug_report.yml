@@ -1,0 +1,116 @@
+name: Bug report
+description: The script crashed, produced wrong results, or didn't find what you expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. The first three fields are the ones that
+        matter; the rest help but are optional.
+
+        **Before you paste output:** logs and listing dumps contain the URLs
+        you were working with and can contain titles, author names and
+        summaries. Skim before you post, and trim dumps to the part that
+        shows the problem.
+
+  - type: textarea
+    id: command
+    attributes:
+      label: The command you ran
+      description: >
+        Paste the full command. Replace the URL with a different one if you'd
+        rather not share which tag or user you were looking at, but please
+        keep the flags intact.
+      render: shell
+      placeholder: python3 ao3_wayback.py --tag-url "https://..." --project NAME --include-chapters --verbose
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What the script did, and what you expected instead.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: What kind of problem is it?
+      options:
+        - Crash or error message
+        - Found nothing when I expected results
+        - Found results but the metadata is wrong or missing
+        - Wrong classification (downloads vs stubs, coverage, status)
+        - Rate limiting or resumption behaviour
+        - Output file problem (encoding, Excel, filenames)
+        - Setup or installation
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Script version
+      description: Output of `python3 ao3_wayback.py --version`
+      placeholder: "1.0.0"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Not sure
+    validations:
+      required: false
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      description: Output of `python3 --version`
+      placeholder: "3.11.6"
+    validations:
+      required: false
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Error message or verbose output
+      description: >
+        Re-run with `--verbose` if you can. Formatted as code automatically,
+        so no backticks needed.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: >
+        Only relevant for parsing or lookup problems. These make a bug
+        reproducible rather than guessable.
+      options:
+        - label: I can attach a `--save-listing` dump of the page that failed to parse
+        - label: I can attach `--probe` output for a URL that behaved unexpectedly
+        - label: I tried `--resume` and the problem persisted
+        - label: The tag or URL contains a special character (`/`, `&`, `.`, `?`, `#`)
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: >
+        A sample row from the CSV, the relevant part of the report, or
+        anything else that might help.
+    validations:
+      required: false
