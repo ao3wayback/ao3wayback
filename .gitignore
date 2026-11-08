@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------
+# .gitignore - ao3-wayback
+# ---------------------------------------------------------------
+
+# --- Script output --------------------------------------------
+# The default output directory and the four files a run writes.
+# These contain other people's works and links. They do not
+# belong in the repo.
+ao3_wayback_out/
+*_works.csv
+*_captures.csv
+*_all_works.csv
+*_all_captures.csv
+*_report.md
+*_progress.json
+
+# Catch-alls for runs pointed elsewhere with --out
+output/
+outputs/
+results/
+*.csv
+*.tsv
+*.xlsx
+
+# --- Diagnostics and run logs ---------------------------------
+# --save-listing dumps, nohup logs, PowerShell redirects
+dump/
+listing_dump/
+*.log
+
+# --- Your own input files -------------------------------------
+# --tags-file input. Your tag lists are yours, not the repo's.
+tags.txt
+*_tags.txt
+
+# --- Python ---------------------------------------------------
+__pycache__/
+*.py[cod]
+.Python
+build/
+dist/
+
+# --- Virtual environments -------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --- Editors and IDEs -----------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS cruft -------------------------------------------------
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Stray credentials ----------------------------------------
+# The script reads none, and should never start. These are here
+# so a local experiment never lands in a commit by accident.
+.env
+*.key
+*.pem
