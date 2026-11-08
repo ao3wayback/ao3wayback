@@ -1,0 +1,55 @@
+name: Tag encoding correction
+description: A tag name that doesn't resolve, or a confirmed character substitution
+title: "[Encoding]: "
+labels: ["encoding", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AO3 replaces certain characters with asterisk codes before
+        percent-encoding a tag into a URL path. Only the `/` to `*s*`
+        substitution has been verified against a live URL. The entries for
+        `&`, `.`, `?` and `#` are educated guesses, and they're the most
+        likely reason an exotic tag returns nothing.
+
+        A single confirmed example closes one of those gaps permanently, so
+        this is one of the most useful things you can send.
+
+  - type: input
+    id: tag-name
+    attributes:
+      label: The tag name, exactly as it appears on AO3
+      placeholder: Steve Rogers & Bucky Barnes
+    validations:
+      required: true
+
+  - type: input
+    id: working-url
+    attributes:
+      label: A working AO3 URL for that tag
+      description: >
+        Open the tag on AO3 and copy the address bar. This is the
+        ground truth - it shows what AO3 actually does to the character.
+      placeholder: https://archiveofourown.org/tags/Steve%20Rogers%20*a*%20Bucky%20Barnes/works
+    validations:
+      required: true
+
+  - type: input
+    id: character
+    attributes:
+      label: Which character is the problem?
+      placeholder: "&"
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What did the script do?
+      description: >
+        Paste the command and what came back. If `--tag` failed but
+        `--tag-url` with the address above worked, say so - that's the
+        signature of an encoding bug rather than a coverage gap.
+      render: shell
+    validations:
+      required: false
